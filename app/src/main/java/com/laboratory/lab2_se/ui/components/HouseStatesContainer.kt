@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
@@ -25,89 +26,79 @@ fun HouseStatesContainer(houseStates: HouseStates) {
         Row(
             modifier = Modifier
                 .padding(all = 20.dp)
-                .height(180.dp),
+                .height(180.dp)
+                .width(300.dp),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceEvenly
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Column {
-                Text(text = "LAMP: ${houseStates.light.uppercase()}")
-            }
-            Column {
-                Text(text = " 💡")
-            }
-            Column {
-                Switch(
-                    checked = houseStates.light == "on", onCheckedChange = {
-                        houseStatesWriteService.writeLightState(
-                            switchToState(it, "on")
-                        )
-                    }, colors = SwitchDefaults.colors(
-                        checkedThumbColor = MaterialTheme.colorScheme.primary,
-                        checkedTrackColor = MaterialTheme.colorScheme.primaryContainer,
-                        uncheckedThumbColor = MaterialTheme.colorScheme.secondary,
-                        uncheckedTrackColor = MaterialTheme.colorScheme.secondaryContainer,
+
+            Text(text = "LAMP: ${houseStates.light.uppercase()}")
+
+            Text(text = if (houseStates.light == "on") "🌞" else "🌚")
+
+            Switch(
+                checked = houseStates.light == "on", onCheckedChange = {
+                    houseStatesWriteService.writeLightState(
+                        switchToState(it, "on")
                     )
+                }, colors = SwitchDefaults.colors(
+                    checkedThumbColor = MaterialTheme.colorScheme.primary,
+                    checkedTrackColor = MaterialTheme.colorScheme.primaryContainer,
+                    uncheckedThumbColor = MaterialTheme.colorScheme.secondary,
+                    uncheckedTrackColor = MaterialTheme.colorScheme.secondaryContainer,
                 )
-            }
+            )
+
         }
         Row(
             modifier = Modifier
                 .padding(all = 20.dp)
-                .height(180.dp),
+                .height(180.dp)
+                .width(300.dp),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceEvenly
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Column {
-                Text(text = "DOOR: ${houseStates.door.uppercase()}")
-            }
-            Column {
-                Text(text = "🚪")
-            }
-            Column {
-                Switch(
-                    checked = houseStates.door == "open", onCheckedChange = {
-                        houseStatesWriteService.writeDoorState(
-                            switchToState(it, "open")
-                        )
-                    }, colors = SwitchDefaults.colors(
-                        checkedThumbColor = MaterialTheme.colorScheme.primary,
-                        checkedTrackColor = MaterialTheme.colorScheme.primaryContainer,
-                        uncheckedThumbColor = MaterialTheme.colorScheme.secondary,
-                        uncheckedTrackColor = MaterialTheme.colorScheme.secondaryContainer,
+            Text(text = "DOOR: ${houseStates.door.uppercase()}")
+            Text(text = if (houseStates.door == "open") "🚪🔓" else "🚪🔒️")
+            Switch(
+                checked = houseStates.door == "open", onCheckedChange = {
+                    houseStatesWriteService.writeDoorState(
+                        switchToState(it, "open")
                     )
+                }, colors = SwitchDefaults.colors(
+                    checkedThumbColor = MaterialTheme.colorScheme.primary,
+                    checkedTrackColor = MaterialTheme.colorScheme.primaryContainer,
+                    uncheckedThumbColor = MaterialTheme.colorScheme.secondary,
+                    uncheckedTrackColor = MaterialTheme.colorScheme.secondaryContainer,
                 )
-            }
+            )
         }
         Row(
             modifier = Modifier
                 .padding(all = 20.dp)
-                .height(180.dp),
+                .height(180.dp)
+                .width(300.dp),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceEvenly
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Column {
-                Text(text = "WINDOW: ${houseStates.window.uppercase()}")
-            }
-            Column {
-                Text(text = "🪟")
-            }
-            Column {
-                Switch(
-                    checked = houseStates.window == "open", onCheckedChange = {
-                        houseStatesWriteService.writeWindowState(
-                            switchToState(it, "open")
-                        )
-                    }, colors = SwitchDefaults.colors(
-                        checkedThumbColor = MaterialTheme.colorScheme.primary,
-                        checkedTrackColor = MaterialTheme.colorScheme.primaryContainer,
-                        uncheckedThumbColor = MaterialTheme.colorScheme.secondary,
-                        uncheckedTrackColor = MaterialTheme.colorScheme.secondaryContainer,
+            Text(text = "WINDOW: ${houseStates.window.uppercase()}")
+            Text(text = if (houseStates.window == "open") "🪟🔓" else "🪟🔒️")
+            Switch(
+                checked = houseStates.window == "open", onCheckedChange = {
+                    houseStatesWriteService.writeWindowState(
+                        switchToState(it, "open")
                     )
+                }, colors = SwitchDefaults.colors(
+                    checkedThumbColor = MaterialTheme.colorScheme.primary,
+                    checkedTrackColor = MaterialTheme.colorScheme.primaryContainer,
+                    uncheckedThumbColor = MaterialTheme.colorScheme.secondary,
+                    uncheckedTrackColor = MaterialTheme.colorScheme.secondaryContainer,
                 )
-            }
+            )
         }
     }
 }
+
 
 fun switchToState(switch: Boolean, state: String): String {
     return when (state) {
